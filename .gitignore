@@ -1,0 +1,9 @@
+.pytest_cache
+tests/__pycache__/*
+pages/__pycache__/*
+utils/__pycache__/*
+*/.pytest_cache/*
+*.html
+venv/
+.idea/
+.env
