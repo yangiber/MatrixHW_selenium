@@ -1,3 +1,4 @@
+from selenium.common import NoSuchElementException
 from selenium.webdriver.common.by import By
 
 
@@ -14,14 +15,18 @@ class Transaction:
 
         header_count = self.driver.find_elements(*self.table_headers)
         body_rows_count = self.driver.find_elements(*self.table_body_rows)
+        # for loop to find in which column "Status"
         for i in range(0, len(header_count)):
             if header_count[i].text == "STATUS":
                 self.status_index = i + 1
                 break
-
-        for j in range(1, len(body_rows_count)+1):
-            status = self.driver.find_element(By.XPATH, "//table[@class='table table-padded']//tbody/tr["+str(j)+"]/td["+str(self.status_index)+"]")
-            if status.text == "Complete":
-                self.completed_count += 1
-
-        return self.completed_count
+        # for loop go through all rows in column "Status" and count "Completed" transaction
+        for j in range(1, len(body_rows_count) + 1):
+            try:
+                status = self.driver.find_element(By.XPATH, "//table[@class='table table-padded']//tbody/tr[" + str(
+                    j) + "]/td[" + str(self.status_index) + "]")
+                if status.text == "Complete":
+                    self.completed_count += 1
+            except NoSuchElementException:
+                pass
+            return self.completed_count
