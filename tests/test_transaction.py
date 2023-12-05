@@ -18,3 +18,4 @@ def test_transaction():
     transaction = Transaction(driver)
     completed = transaction.find_all_completed()
     assert completed == int(os.getenv("COMPLETED_ROWS"))
+    driver.quit()

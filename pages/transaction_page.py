@@ -20,13 +20,10 @@ class Transaction:
             if header_count[i].text == "STATUS":
                 self.status_index = i + 1
                 break
+
         # for loop go through all rows in column "Status" and count "Completed" transaction
         for j in range(1, len(body_rows_count) + 1):
-            try:
-                status = self.driver.find_element(By.XPATH, "//table[@class='table table-padded']//tbody/tr[" + str(
-                    j) + "]/td[" + str(self.status_index) + "]")
-                if status.text == "Complete":
-                    self.completed_count += 1
-            except NoSuchElementException:
-                pass
-            return self.completed_count
+            status = self.driver.find_element(By.XPATH, "//table[@class='table table-padded']//tbody/tr["+str(j)+"]/td["+str(self.status_index)+"]")
+            if status.text == "Complete":
+                self.completed_count += 1
+        return self.completed_count

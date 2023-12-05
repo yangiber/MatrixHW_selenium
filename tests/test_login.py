@@ -18,4 +18,4 @@ def test_login():
     loginutil.login(user_name, psw)
     time.sleep(1)
     assert login.get_logged_username() == os.getenv("LOGGED_USERNAME")
-
+    driver.quit()
