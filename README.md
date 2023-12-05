@@ -1,4 +1,6 @@
 ﻿# HW for Matrix TL position.
+ The language chosen for the project Python with PyTest and Selenium
+
 Open a project at Pycharm or all over IDE that can run Python 3.11
 open the terminal and set project dir as working dir,
 for example c:\MatrixHW_selenium
